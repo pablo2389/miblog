@@ -1,0 +1,18 @@
+/* src/components/Home.module.css */
+.container {
+  text-align: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  color: #2c3e50;
+}
+
+.welcome {
+  color: #666;
+}

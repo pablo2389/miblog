@@ -1,12 +1,15 @@
-
-
-import PostList from './PostList'; 
+import React from 'react';
+import './App.css';
+import { AuthProvider } from './context/AuthContext'; // Asegúrate de importar correctamente
+import AppRouter from './routes/AppRouter';
 
 function App() {
   return (
     <div className="App">
-      <h1>Mi Blog</h1>
-      <PostList />
+      {/* Envolvemos toda la aplicación con AuthProvider */}
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
     </div>
   );
 }
