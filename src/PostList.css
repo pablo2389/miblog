@@ -1,0 +1,43 @@
+
+.post-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    align-items: center;
+    justify-items: center;
+  }
+  
+  .post-card {
+    border: 11px solid #ccc;
+    text-align: center;
+    background: rgb(128, 102, 230);
+    padding: 16px;
+    border-radius: 118px;
+    box-shadow: 0 12px 14px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-text {
+    max-height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  button {
+    background: blue;
+    color: aqua;
+  }
+h1{
+    display: flex;
+    justify-content: center;
+    background-color: darkseagreen;
+    padding: 25px;
+gap: 15px;
+border: 11px solid #ccc;
+}  
