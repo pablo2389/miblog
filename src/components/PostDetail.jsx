@@ -1,15 +1,22 @@
+// src/components/PostDetail.jsx
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import styles from './PostDetail.module.css'; // Importación de estilos
+import { useParams, useNavigate } from 'react-router-dom';
+import styles from './PostDetail.module.css';
 
-const PostDetail = () => {
+const PostDetail = ({ posteos }) => {
   const { id } = useParams();
-  console.log(`Este es el posteo ID: ${id}`);
+  const navigate = useNavigate();
+  const posteo = posteos.find((post) => post.id === Number(id));
+
+  if (!posteo) {
+    return <h2>Posteo no encontrado</h2>;
+  }
 
   return (
     <div className={styles.container}>
       <h2>Detalle del Posteo {id}</h2>
-      <p>Mostrando detalles del posteo con ID {id}...</p>
+      <p>{posteo.contenido}</p>
+      <button onClick={() => navigate(`/editar/${id}`)} className={styles.editButton}>Modificar</button>
     </div>
   );
 };

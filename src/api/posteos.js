@@ -1,5 +1,5 @@
 // src/api/posteos.js
-import client from './Client';
+import client from './client';
 
 // Obtener todos los posteos del usuario
 export const getPosteos = async (usuario) => {

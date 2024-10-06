@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const PostForm = ({ agregarPosteo }) => {
+const PostForm = ({ agregarPosteo, posteoEditado }) => {
   const [titulo, setTitulo] = useState('');
   const [texto, setTexto] = useState('');
   const [usuario, setUsuario] = useState('');
 
+  // Efecto para cargar los datos del posteo a editar
+  useEffect(() => {
+    if (posteoEditado) {
+      setTitulo(posteoEditado.titulo);
+      setTexto(posteoEditado.texto);
+      setUsuario(posteoEditado.usuario);
+    } else {
+      // Limpiar el formulario si no hay posteo a editar
+      setTitulo('');
+      setTexto('');
+      setUsuario('');
+    }
+  }, [posteoEditado]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const nuevoPosteo = {
-      id: Math.floor(Math.random() * 1000),  // Genera un ID aleatorio
+      id: posteoEditado ? posteoEditado.id : Math.floor(Math.random() * 1000), // Usar el ID existente o generar uno nuevo
       titulo,
       texto,
-      user_id: Math.floor(Math.random() * 100),  // Simula un user_id
+      user_id: posteoEditado ? posteoEditado.user_id : Math.floor(Math.random() * 100), // Mantener el user_id si es un posteo existente
       usuario
     };
 
@@ -51,7 +65,7 @@ const PostForm = ({ agregarPosteo }) => {
           required
         />
       </div>
-      <button type="submit">Agregar Posteo</button>
+      <button type="submit">{posteoEditado ? 'Modificar Posteo' : 'Agregar Posteo'}</button>
     </form>
   );
 };

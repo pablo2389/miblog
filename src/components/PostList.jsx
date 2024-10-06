@@ -41,8 +41,17 @@ const PostList = () => {
     }
   ]);
 
+  const [posteoEditado, setPosteoEditado] = useState(null); // Estado para el posteo a editar
+
   const agregarPosteo = (nuevoPosteo) => {
-    setPosteos([nuevoPosteo, ...posteos]); // Agrega el nuevo posteo al principio del array
+    if (posteoEditado) {
+      // Si hay un posteo editado, actualiza en lugar de agregar
+      setPosteos(posteos.map(posteo => (posteo.id === nuevoPosteo.id ? nuevoPosteo : posteo)));
+      setPosteoEditado(null); // Limpia el posteo a editar
+    } else {
+      // Agrega el nuevo posteo al principio del array
+      setPosteos([nuevoPosteo, ...posteos]);
+    }
   };
 
   const handleLeer = (id) => {
@@ -50,12 +59,13 @@ const PostList = () => {
   };
 
   const handleModificar = (id) => {
-    alert(`MODIFICAR posteo ID: ${id}`);
+    const posteo = posteos.find(posteo => posteo.id === id);
+    setPosteoEditado(posteo); // Establece el posteo a editar
   };
 
   return (
     <div className={styles.container}> {/* Clase de estilo */}
-      <PostForm agregarPosteo={agregarPosteo} />
+      <PostForm agregarPosteo={agregarPosteo} posteoEditado={posteoEditado} />
       {posteos.map((posteo) => (
         <div key={posteo.id} className={styles.postCard}> {/* Clase de estilo */}
           <h2>{posteo.titulo}</h2>
